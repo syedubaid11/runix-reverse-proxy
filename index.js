@@ -12,11 +12,11 @@ app.listen(PORT || process.env.reversePorxyPORT ,()=>{
     console.log('Reverse Proxy listening on PORT:',PORT)
 })
 
-app.use((req,res)=>{
-    const hostname=req.hostname;
-    const subdomain=hostname.split('.')[0];
+app.use('/p/:projectId',(req,res)=>{
+    const projectId=req.params.projectId;
+    console.log(projectId)
 
-    const resolvesTo=`${BASE_PATH}/${subdomain}`
+    const resolvesTo=`${BASE_PATH}/${projectId}`
 
     proxy.web(req,res,{target:resolvesTo, changeOrigin:true})
 })
