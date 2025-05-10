@@ -17,7 +17,6 @@ app.listen(PORT || process.env.reversePorxyPORT ,()=>{
 // proxy for the intial index.html request
 app.use('/p/:projectId',(req,res)=>{
     projectId=req.params.projectId;
-    
     const resolvesTo=`${BASE_PATH}/${projectId}`
     proxy.web(req,res,{target:resolvesTo, changeOrigin:true})
 })
@@ -25,7 +24,6 @@ app.use('/p/:projectId',(req,res)=>{
 // proxy for assets folder
 app.use('/assets/',(req,res)=>{
     const resolvesTo=`${BASE_PATH}/${projectId}/assets`
-
     proxy.web(req,res,{target:resolvesTo, changeOrigin:true})
 })
 
